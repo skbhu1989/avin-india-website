@@ -14,6 +14,7 @@ import { PageHero, SectionHeading } from "@/components/site/SectionHeading";
 import { Reveal } from "@/components/site/Reveal";
 import { JsonLd } from "@/components/site/JsonLd";
 import { allFoundersSchema } from "@/lib/schema";
+import { sanjayPhoto, bishalPhoto, nikitaPhoto, nibhaPhoto } from "@/assets/embedded/founders";
 
 export const Route = createFileRoute("/founder")({
   head: () => ({
@@ -41,6 +42,7 @@ const founders = [
   {
     name: "Sanjay Bhuwania",
     initials: "SB",
+    photo: sanjayPhoto as string | undefined,
     role: "Founder & CEO",
     credentials: "Chartered Accountant | Fractional CFO",
     bio: "Sanjay leads Avin India's vision and CFO practice, partnering with founders to build finance functions that scale — from monthly reporting discipline to fundraise readiness.",
@@ -50,6 +52,7 @@ const founders = [
   {
     name: "Bishal Shaw",
     initials: "BS",
+    photo: bishalPhoto,
     role: "Founder & Director – Finance Advisory",
     credentials: "Chartered Accountant",
     bio: "Bishal heads finance advisory and controllership, ensuring clients close books faster with accurate, audit-ready reporting and strong internal financial controls.",
@@ -59,6 +62,7 @@ const founders = [
   {
     name: "Nikita Aggarwal",
     initials: "NA",
+    photo: nikitaPhoto,
     role: "Founder & Director – Enterprise Solutions",
     credentials: "MBA",
     bio: "Nikita drives enterprise solutions and finance automation, designing systems and processes that connect finance data with day-to-day business decision making.",
@@ -68,6 +72,7 @@ const founders = [
   {
     name: "Nibha Kedia",
     initials: "NK",
+    photo: nibhaPhoto,
     role: "Founder & Director – Corporate Compliance",
     credentials: "Company Secretary",
     bio: "Nibha leads corporate governance and compliance, keeping companies secretarially sound across incorporation, ROC filings, board processes and regulatory matters.",
@@ -104,9 +109,19 @@ function LeadershipPage() {
                     <div className="relative shrink-0">
                       <div className="grid h-24 w-24 place-items-center rounded-2xl bg-gradient-to-br from-primary via-primary/85 to-navy shadow-[var(--shadow-elevated)] overflow-hidden">
                         <div className="absolute inset-0 bg-grid opacity-20" />
-                        <span className="relative font-display font-bold text-3xl text-white">
-                          {f.initials}
-                        </span>
+                        {f.photo ? (
+                          <img
+                            src={f.photo}
+                            alt={f.name}
+                            className="relative h-full w-full object-cover"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        ) : (
+                          <span className="relative font-display font-bold text-3xl text-white">
+                            {f.initials}
+                          </span>
+                        )}
                       </div>
                       <span className="absolute -bottom-2 -right-2 grid h-8 w-8 place-items-center rounded-lg bg-accent-soft text-accent border border-white">
                         <Building2 className="h-4 w-4" />

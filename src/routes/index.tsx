@@ -38,6 +38,28 @@ import {
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { Counter } from "@/components/site/Counter";
+import { sanjayPhoto } from "@/assets/embedded/founders";
+import {
+  niraLogo,
+  bombayPlayLogo,
+  xyloLogo,
+  nanoThreadLogo,
+  evionicsLogo,
+  adventureLogo,
+  d3Logo,
+  simplifyLogo,
+} from "@/assets/embedded/clients";
+
+const clientLogos = [
+  { name: "Nira Finance", src: niraLogo },
+  { name: "Bombay Play", src: bombayPlayLogo },
+  { name: "Xylo Earth", src: xyloLogo },
+  { name: "Nano Thread", src: nanoThreadLogo },
+  { name: "Evionics", src: evionicsLogo },
+  { name: "Adventure Recruitment", src: adventureLogo },
+  { name: "D3 Estate & Construction", src: d3Logo },
+  { name: "Simplify Innovations", src: simplifyLogo },
+];
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -253,12 +275,15 @@ function Index() {
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-20 pb-24 sm:pt-24 sm:pb-32 lg:pt-28 lg:pb-36">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 items-center">
             <div className="lg:col-span-7 animate-fade-up">
-              <span className="inline-flex items-center gap-2 rounded-full bg-white border border-border px-3.5 py-1.5 text-xs font-semibold text-navy shadow-[var(--shadow-soft)]">
-                <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
+              <span className="inline-flex items-center gap-2 rounded-full bg-white border border-border px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-navy shadow-[var(--shadow-soft)]">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full rounded-full bg-accent opacity-60 animate-ping" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
+                </span>
                 Trusted Finance Partner Since 2019
               </span>
 
-              <h1 className="mt-7 font-display text-5xl sm:text-6xl lg:text-7xl xl:text-[5.25rem] font-bold leading-[1.02] tracking-[-0.03em] text-navy">
+              <h1 className="mt-7 font-display text-5xl sm:text-6xl lg:text-7xl xl:text-[5.25rem] font-bold leading-[0.98] tracking-[-0.035em] text-navy">
                 Your Complete Finance Team.{" "}
                 <span className="text-gradient-hero">Built for Growth.</span>
               </h1>
@@ -286,10 +311,12 @@ function Index() {
                   { k: "25+", v: "Active Clients" },
                   { k: "8+", v: "Industries Served" },
                   { k: "33+", v: "Yrs Combined Leadership" },
-                ].map((s) => (
-                  <div key={s.v}>
-                    <div className="font-display text-2xl sm:text-3xl font-bold text-navy">{s.k}</div>
-                    <div className="text-xs text-muted-foreground mt-1">{s.v}</div>
+                ].map((s, i) => (
+                  <div key={s.v} className={i > 0 ? "pl-6 border-l border-border" : ""}>
+                    <div className="font-display text-3xl sm:text-4xl font-bold text-gradient-hero tracking-tight">
+                      {s.k}
+                    </div>
+                    <div className="text-xs text-muted-foreground mt-1.5 leading-snug">{s.v}</div>
                   </div>
                 ))}
               </div>
@@ -403,25 +430,17 @@ function Index() {
           </div>
 
           <div className="mt-10 overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]">
-            <div className="flex w-max marquee gap-16 items-center">
+            <div className="flex w-max marquee gap-12 items-center">
               {[...Array(2)].flatMap((_, dup) =>
-                [
-                  { name: "NIRA", hue: "#1565C0" },
-                  { name: "BOMBAY PLAY", hue: "#F57C00" },
-                  { name: "XYLO", hue: "#0F172A" },
-                  { name: "NANO THREAD", hue: "#1E88E5" },
-                  { name: "EVIONICS", hue: "#F57C00" },
-                  { name: "ADVENTURE RECRUITMENT", hue: "#1565C0" },
-                  { name: "D3", hue: "#0F172A" },
-                  { name: "SIMPLIFY INNOVATIONS", hue: "#1E88E5" },
-                ].map((n, i) => (
-                  <span
+                clientLogos.map((c, i) => (
+                  <img
                     key={`${dup}-${i}`}
-                    className="font-display font-bold text-lg sm:text-xl tracking-[0.2em] whitespace-nowrap grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-300 cursor-default"
-                    style={{ color: n.hue }}
-                  >
-                    {n.name}
-                  </span>
+                    src={c.src}
+                    alt={c.name}
+                    className="h-14 w-auto object-contain grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 )),
               )}
             </div>
@@ -559,7 +578,7 @@ function Index() {
           />
           <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {whyUs.map((w) => (
-              <div key={w.title} className="card-premium p-7">
+              <div key={w.title} className="card-premium card-accent-top p-7">
                 <span className="grid h-14 w-14 place-items-center rounded-2xl bg-navy text-navy-foreground">
                   <w.icon className="h-6 w-6 text-accent" />
                 </span>
@@ -698,22 +717,21 @@ function Index() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-5">
               <div className="relative aspect-[4/5] rounded-3xl overflow-hidden bg-gradient-to-br from-primary via-primary/80 to-navy shadow-[var(--shadow-elevated)]">
-                <div className="absolute inset-0 bg-grid opacity-20" />
-                <div className="absolute inset-0 grid place-items-center">
-                  <div className="text-center">
-                    <div className="mx-auto grid h-40 w-40 place-items-center rounded-full bg-white/10 backdrop-blur-sm border-4 border-white/20">
-                      <span className="font-display font-bold text-6xl text-white">SB</span>
-                    </div>
-                    <p className="mt-6 text-white/80 text-sm">Founder Portrait</p>
-                  </div>
-                </div>
+                <img
+                  src={sanjayPhoto}
+                  alt="Sanjay Bhuwania, Founder & CEO of Avin India"
+                  className="absolute inset-0 h-full w-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-navy/70 to-transparent" />
                 <div className="absolute bottom-5 left-5 right-5 rounded-2xl bg-white/95 backdrop-blur-sm p-4 flex items-center gap-3">
                   <span className="grid h-10 w-10 place-items-center rounded-xl bg-accent-soft text-accent">
                     <Star className="h-5 w-5 fill-accent" />
                   </span>
                   <div>
                     <p className="font-display font-bold text-navy text-sm">CA · Fractional CFO</p>
-                    <p className="text-xs text-muted-foreground">15+ years finance leadership</p>
+                    <p className="text-xs text-muted-foreground">12+ years finance leadership</p>
                   </div>
                 </div>
               </div>
@@ -795,7 +813,7 @@ function Index() {
               </div>
               <div className="lg:col-span-4 flex lg:justify-end">
                 <Link
-                  to="/contact"
+                  to="/finance-health-check"
                   className="inline-flex items-center gap-2 rounded-full bg-accent text-accent-foreground px-7 py-4 text-sm font-semibold shadow-[var(--shadow-elevated)] hover:-translate-y-0.5 hover:shadow-[var(--shadow-glow)] transition-all"
                 >
                   Start Free Assessment <ArrowRight className="h-4 w-4" />

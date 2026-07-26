@@ -13,6 +13,7 @@ const publicDir = join(__dirname, "..", "public");
 const SITE_URL = "https://avinindia.in";
 const ROUTES = [
   { path: "/", priority: 1.0, changefreq: "weekly" },
+  { path: "/finance-health-check", priority: 0.9, changefreq: "monthly" },
   { path: "/about", priority: 0.8, changefreq: "monthly" },
   { path: "/services", priority: 0.9, changefreq: "monthly" },
   { path: "/solutions/finance-operations", priority: 0.9, changefreq: "monthly" },

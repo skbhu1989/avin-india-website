@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import logoAsset from "@/assets/avin-india-logo.jpg.asset.json";
+import { avinLogo as logoUrl } from "@/assets/embedded/brand";
 
 export function Logo({ variant = "dark" }: { variant?: "dark" | "light" }) {
   const text = variant === "light" ? "text-white" : "text-navy";
@@ -8,7 +8,7 @@ export function Logo({ variant = "dark" }: { variant?: "dark" | "light" }) {
   return (
     <Link to="/" className="flex items-center gap-2.5 group" aria-label="Avin India — Home">
       <img
-        src={logoAsset.url}
+        src={logoUrl}
         alt="Avin India logo"
         width={40}
         height={40}
